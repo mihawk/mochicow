@@ -65,7 +65,8 @@ upgrade(_ListenerPid, _Handler, Opts, Req) ->
 
     case catch call_body(HttpLoop, MochiReq) of
         {'EXIT', _Reason} ->
-            closed;
+            %%closed;
+            {halt, Req};
         _ ->
             after_response(Req, MochiReq)
     end.
